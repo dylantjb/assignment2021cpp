@@ -23,12 +23,12 @@ private:
   int time;
 
 public:
-  CovidCase(const double lat, const double lon, const string &name,
-            const int age, const int time)
-      : lat(), lon(), name(), age(), time() {}
+  CovidCase(const double latIn, const double lonIn, const string &nameIn,
+            const int ageIn, const int timeIn)
+      : lat(latIn), lon(lonIn), name(nameIn), age(ageIn), time(timeIn) {}
   void write(ostream &o) const {
     o << '{' << lat << ", " << lon << ", " << '"' << name << "\", " << age
-      << ", " << time << '}' << "\n";
+      << ", " << time << '}';
   }
   double getLon() const { return lon; }
   double getLat() const { return lat; }
