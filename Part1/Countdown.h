@@ -11,25 +11,19 @@ std::string intToString(const int x) {
     str << x;
     return str.str();
 }
-
 class CountdownSolution {
-  
 private:
     std::string solution;
     int value;
-    
 public:
     
     CountdownSolution() : solution(), value(0) {}
-    
     CountdownSolution(const std::string & solutionIn, const int valueIn)
         : solution(solutionIn), value(valueIn) {
     }
-    
     const std::string & getSolution() const {
         return solution;
     }
-    
     int getValue() const {
         return value;
     }
@@ -44,14 +38,12 @@ using namespace std;
 
 inline double evaluateCountdown(const string &expr) {
   vector<double> numbers;
-
   double op1;
   double op2;
-
   int pos = 0;
   while (pos < expr.length()) {
     switch (expr[pos]) {
-    case '+':
+    case '+': 
       op1 = numbers.back();
       numbers.pop_back();
       op2 = numbers.back();
@@ -103,19 +95,19 @@ inline double evaluateCountdown(const string &expr) {
 // Pick two numbers, use an operator, see if you get the (close to the) answer, pick another ... save the difference between it and the answer.
 // Keep all the differences with their expressions
 // Let it run 100 times then find the closest.
-inline CountdownSolution solveCountdownProblem(const vector<int> &numbers, const double target) {
-  vector<char> operators{'+', '-', '*', '/'};
-  string expression = "";
-  for (int i=0; i < numbers.size(); ++i) {
-    if (i > 1) {
-      char op = operators.back();
-      operators.pop_back();
-    } else {
-      expression += intToString(numbers.back()) + " ";
-    }
-  }
-  return CountdownSolution(expression);
-}
+// inline CountdownSolution solveCountdownProblem(const vector<int> &numbers, const double target) {
+//   vector<char> operators{'+', '-', '*', '/'};
+//   string expression = "";
+//   for (int i=0; i < numbers.size(); ++i) {
+//     if (i > 1) {
+//       char op = operators.back();
+//       operators.pop_back();
+//     } else {
+//       expression += intToString(numbers.back()) + " ";
+//     }
+//   }
+//   return CountdownSolution(expression);
+// }
 
 
 // Do not edit below this line
