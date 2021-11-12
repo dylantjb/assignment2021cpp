@@ -38,24 +38,25 @@ public:
     for (int i = 0; i < cases.size(); i++) {
       time = cases[i].getTime();
       for (int j = 1; j < timedCases.size(); j++) {
-        if (timedCases.size() + timeIn < time)
+        if (timedCases[j].getTime() + timeIn < time)
           timedCases.push_back(TimeAndCaseData(timedCases[j].getTime() + timeIn,
                                                --numberOfCases));
       }
       timedCases.push_back(
-          TimeAndCaseData(timedCases[i].getTime(), ++numberOfCases));
+          TimeAndCaseData(cases[i].getTime(), ++numberOfCases));
       if (i == cases.size() - 1) {
         for (int k = 0; k < cases.size(); k++) {
           if (cases[k].getTime() + timeIn > time) {
             timedCases.push_back(TimeAndCaseData(
-                timedCases[k].getTime() + timeIn, --numberOfCases));
+                cases[k].getTime() + timeIn, --numberOfCases));
           }
-          if (timedCases[k].getTime() == timeIn) {
+          if (cases[k].getTime() == timeIn) {
             break;
           }
         }
       }
     }
+  return timedCases;
   }
 };
 
