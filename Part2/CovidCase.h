@@ -8,12 +8,11 @@ using std::ostream;
 
 #include <cmath>
 #include <string>
-using std::isdigit;
 using std::stod;
 using std::stoi;
 using std::string;
 
-inline const double convertToRadians(double coord);
+inline double convertInRadians(double coord);
 
 class CovidCase {
 private:
@@ -30,13 +29,10 @@ public:
   explicit CovidCase(const string &stringIn) : lat(0), lon(0), name(""), age(0), time(0) {
     string temp = "";
     int element = 0;
-
-    // name
     int x = stringIn.find('"');
     int y = stringIn.find_last_of('"');
     name = stringIn.substr(x+1, y-x-1);
 
-    // numbers
     for (int i = 0; i < stringIn.length(); i++) {
       char current = stringIn[i];
       if (current == ',' || i == stringIn.length()-1) {
@@ -62,7 +58,7 @@ public:
         std::cout << temp << std::endl;
         element++;
         temp = "";
-      } else if (isdigit(current) || current == '.' || current == '-') {
+      } else if (std::isdigit(current) || current == '.' || current == '-') {
         temp.push_back(current);
       }
     }
@@ -83,10 +79,10 @@ public:
   int getTime() const { return time; }
   double distanceTo(const CovidCase &other) const {
     // convert to radians (* pi/180)
-    double lat1 = convertToRadians(lat);
-    double lon1 = convertToRadians(lon);
-    double lat2 = convertToRadians(other.getLatitude());
-    double lon2 = convertToRadians(other.getLongitude());
+    double lat1 = convertInRadians(lat);
+    double lon1 = convertInRadians(lon);
+    double lat2 = convertInRadians(other.getLatitude());
+    double lon2 = convertInRadians(other.getLongitude());
 
     double dlon = lon1 - lon2;
     double dlat = lat1 - lat2;
@@ -98,10 +94,9 @@ public:
   }
 };
 
-inline const double convertToRadians(double coord) {
+inline double convertInRadians(double coord) {
   return (atan(1) * coord) / 45;
 }
-
 inline ostream &operator<<(ostream &o, const CovidCase &rhs) {
   rhs.write(o);
   return o;

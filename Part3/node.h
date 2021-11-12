@@ -17,7 +17,7 @@ public:
   T data;
   Node<T> *next;
   Node<T> *previous;
-  Node(T dataIn) : data(dataIn), next(nullptr), previous(nullptr) {}
+  explicit Node(T dataIn) : data(dataIn), next(nullptr), previous(nullptr) {}
 };
 
 template <typename T> class NodeIterator {
@@ -25,7 +25,7 @@ private:
   Node<T> *current;
 
 public:
-  NodeIterator(Node<T> *currentIn) : current(currentIn) {}
+  explicit NodeIterator(Node<T> *currentIn) : current(currentIn) {}
   T &operator*() { return current->data; }
   Node<T> *getCurrent() const { return current; }
   void operator++() { current = current->next; }
